@@ -16,6 +16,3 @@ Para correr este proyecto localmente:
 1. Clonar el repo: `git clone [URL de tu repo]`
 2. Instalar dependencias: `npm install`
 
-
-
->>>>>>> faed9babe72f167a76891f83005b42902f4b5599
