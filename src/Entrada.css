@@ -44,15 +44,12 @@
 
 .menu-derecha a:hover { color: #1a237e; }
 
-/* Carrito con Badge */
 .cart-container { 
   position: relative; 
   cursor: pointer;
   display: flex;
   align-items: center;
 }
-
-.icon-cart { color: #333; }
 
 .cart-badge {
   position: absolute;
@@ -68,32 +65,52 @@
   text-align: center;
 }
 
-/* 3. HERO SECTION (ZONA AZUL) */
-/* Hero Section con el degradado azul */
+/* 3. HERO SECTION (CARRUSEL) */
 .hero-azul {
-  background-color: #111845; /* Azul profundo */
-  height: 180px;
+  background-color: #111845;
+  height: 200px; /* Un poco más de altura para el texto del banner */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  /* El efecto de brillo azul abajo */
   box-shadow: inset 0 -40px 60px -20px #4d5bf9; 
+  flex-direction: column; 
+   /* CAMBIÁ ESTO DE hidden A visible */
+  overflow: visible; 
+  transition: background-color 0.8s ease; /* Para el cambio de color del carrusel */
+    z-index: 10; /* Le damos una base baja al hero */
+
 }
+
+/* Animación para el texto del banner */
+.hero-azul h2, .hero-azul p {
+  animation: fadeIn 0.6s ease-in-out;
+  color: white;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .contenedor-busqueda {
   display: flex;
   align-items: center;
   background: white;
   width: 40%;
-  min-width: 300px;
+  min-width: 350px;
   padding: 12px 25px;
   border-radius: 50px;
   position: absolute;
-  bottom: -25px;
+  bottom: -25px; /* Esto es lo que la saca del hero */
+  left: 50%;
+  transform: translateX(-50%);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  z-index: 10;
+  
+  /* ASEGURATE QUE SEA MAYOR AL DEL HERO */
+  z-index: 100; 
 }
-
 .input-busqueda {
   border: none;
   outline: none;
@@ -102,29 +119,73 @@
   font-size: 15px;
 }
 
-/* 4. LAYOUT PRINCIPAL */
+/* 4. LAYOUT CENTRAL */
 .contenido {
   display: flex;
+  flex-direction: column;
+  align-items: center; 
   padding: 80px 50px 40px;
-  max-width: 1400px;
+  max-width: 1300px;
   margin: 0 auto;
 }
 
-.sidebar-filtros { 
-  width: 80px; 
-  color: #666;
-  padding-top: 10px;
+/* CATEGORÍAS (DROPDOWN) */
+.tabla-categorias {
+  background: white;
+  width: 250px;
+  margin-bottom: 50px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  position: relative;
+  cursor: pointer;
+  z-index: 100; /* Asegura que flote sobre los productos */
 }
 
-/* Grilla Adaptada (4 columnas) */
+.cabecera-cat { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+  padding: 12px 20px; 
+}
+
+.titulo-cat { font-size: 16px; font-weight: bold; margin: 0; color: #1a237e; }
+
+.flecha-menu { transition: transform 0.3s; }
+.flecha-menu.rotada { transform: rotate(90deg); }
+
+.lista-cat {
+  list-style: none;
+  background: white;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.lista-cat.visible { 
+  max-height: 400px; 
+  opacity: 1; 
+  border-top: 1px solid #eee; 
+}
+
+.item-cat { padding: 10px 20px; font-size: 14px; transition: background 0.2s; }
+.item-cat:hover { background: #f4f7f9; }
+.item-cat.active { font-weight: bold; color: #1a237e; background: #e8eaf6; }
+
+/* 5. GRILLA DE PRODUCTOS */
 .grilla-productos {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 25px;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px;
   width: 100%;
+  justify-content: center;
 }
 
-/* 5. TARJETAS DE PRODUCTO */
 .tarjeta-producto {
   background: white;
   border-radius: 16px;
@@ -147,7 +208,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #f0f0f0;
 }
 
 .placeholder-img {
@@ -157,7 +217,6 @@
   border-radius: 12px;
 }
 
-/* Información del producto */
 .info-contenedor {
   padding: 16px;
   display: flex;
@@ -165,35 +224,11 @@
   gap: 10px;
 }
 
-.prod-titulo {
-  font-size: 15px;
-  font-weight: 700;
-  color: #222;
-  margin: 0;
-}
+.prod-titulo { font-size: 15px; font-weight: 700; }
+.prod-descripcion { font-size: 12px; color: #777; height: 34px; overflow: hidden; }
+.prod-footer { display: flex; justify-content: space-between; align-items: center; }
+.prod-precio { font-weight: 800; font-size: 18px; color: #1a237e; }
 
-.prod-descripcion {
-  font-size: 12px;
-  color: #777;
-  line-height: 1.4;
-  height: 34px; /* Mantiene el orden visual */
-  overflow: hidden;
-}
-
-.prod-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 5px;
-}
-
-.prod-precio {
-  font-weight: 800;
-  font-size: 18px;
-  color: #1a237e;
-}
-
-/* Botón Agregar */
 .btn-agregar {
   background: #111;
   color: white;
@@ -201,7 +236,6 @@
   padding: 8px 14px;
   border-radius: 8px;
   font-size: 12px;
-  font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -209,9 +243,8 @@
   transition: background 0.2s;
 }
 
-.btn-agregar:hover {
-  background: #4d5bf9;
-}
+.btn-agregar:hover { background: #4d5bf9; }
+.btn-agregar.agregado { background-color: #2e7d32; }
 
 /* 6. PAGINACIÓN */
 .paginacion {
@@ -227,21 +260,26 @@
   padding: 12px;
   border-radius: 12px;
   cursor: pointer;
-  display: flex;
-  transition: all 0.2s;
+  transition: 0.2s;
 }
 
-.btn-flecha:hover {
-  background: #1a237e;
-  color: white;
-  border-color: #1a237e;
+.btn-flecha:hover { background: #1a237e; color: white; }
+
+.no-results {
+  grid-column: span 3;
+  text-align: center;
+  padding: 40px;
+  color: #888;
 }
 
-/* Responsive básico */
-@media (max-width: 1100px) {
+/* Responsive */
+@media (max-width: 1024px) {
   .grilla-productos { grid-template-columns: repeat(2, 1fr); }
+  .contenedor-busqueda { width: 60%; }
 }
+
 @media (max-width: 600px) {
   .grilla-productos { grid-template-columns: 1fr; }
-  .contenedor-busqueda { width: 80%; }
+  .navbar { padding: 15px 20px; }
+  .menu-derecha { display: none; } /* Opcional: ocultar menú en móviles muy chicos */
 }

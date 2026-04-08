@@ -1,0 +1,10 @@
+/* Limpieza básica */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ebebeb; /* GRIS CLÁSICO DE MERCADO LIBRE */
+  color: #333;
+}
+
+h1 { font-size: 24px; margin-bottom: 10px; }
