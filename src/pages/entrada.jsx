@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 import ProductoCard from '../components/ProductoCard';
-import '../../src/Entrada.css';
+import '../styles/Entrada.css';
 
 const Entrada = () => {
   // 1. ESTADOS
@@ -47,17 +47,22 @@ const Entrada = () => {
 
   return (
     <div className="container-principal">
-      <nav className="navbar">
-        <div className="logo">NET</div>
-        <div className="menu-derecha">
-          <Link to="/">HOME</Link>
-          <Link to="/proceso">PRODUCTOS</Link>
-          <div className="cart-container">
-            <ShoppingCart className="icon-cart" />
-            <span className="cart-badge">{carritoCount}</span>
-          </div>
-        </div>
-      </nav>
+  <nav className="navbar">
+  <div className="logo">NET</div>
+  
+  <div className="menu-derecha">
+    <Link to="/">HOME</Link>
+    <Link to="/productos">PRODUCTOS</Link>
+
+    {/* Envolvemos el carrito en un Link hacia /proceso */}
+    <Link to="/proceso" className="cart-container" style={{ textDecoration: 'none', color: 'inherit' }}>
+      <ShoppingCart className="icon-cart" />
+      {carritoCount > 0 && (
+        <span className="cart-badge">{carritoCount}</span>
+      )}
+    </Link>
+  </div>
+</nav>
 
       {/* HERO CON CARRUSEL DINÁMICO */}
       <header className="hero-azul" style={{ backgroundColor: banners[currentBanner].color, transition: 'background-color 0.8s ease' }}>

@@ -1,0 +1,76 @@
+/* src/styles/Navbar.css */
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 50px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  width: 100%;
+  position: sticky; /* Opcional: para que se quede fijo arriba al scrollear */
+  top: 0;
+  z-index: 1000;
+}
+
+.logo { 
+  font-weight: 800; 
+  font-size: 28px; 
+  letter-spacing: -1px;
+  color: #111845; /* El azul oscuro de tu hero */
+  text-decoration: none;
+}
+
+.menu-derecha { 
+  display: flex; 
+  gap: 25px; 
+  align-items: center; 
+}
+
+.menu-derecha a { 
+  text-decoration: none; 
+  color: #444; 
+  font-size: 14px; 
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.menu-derecha a:hover { 
+  color: #1a237e; 
+}
+
+.cart-container { 
+  position: relative; 
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 20px; /* Tamaño del icono del carrito */
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #ff4444;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Responsivo para el Navbar */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+  .menu-derecha {
+    gap: 15px;
+  }
+  /* Ocultamos textos largos en móvil para que no se amontone */
+  .menu-derecha a:not(.cart-container) {
+    display: none; 
+  }
+}
